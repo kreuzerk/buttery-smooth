@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  background: #1b1e27;
+  color: white;
+  margin: 0;
+}
+
+.container {
+  margin-top: 20px;
+  max-width: 1200px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+input {
+  width: 100%;
+  background: transparent;
+  border: 1px solid white;
+  font-size: 20px;
+  height: 60px;
+  border-radius: 20px;
+  outline: none;
+  padding-left: 20px;
+  color: white;
+}
