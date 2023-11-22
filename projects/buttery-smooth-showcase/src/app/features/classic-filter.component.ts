@@ -1,4 +1,4 @@
-import {Component, inject} from "@angular/core";
+import {Component, inject, Input, SimpleChanges} from "@angular/core";
 
 import {TvShowService} from "../tv-shows.service";
 import {TvShowCardComponent} from "../shared/tv-show-card.component";
@@ -34,10 +34,15 @@ import {TvShowCardComponent} from "../shared/tv-show-card.component";
 })
 export class AppClassicFilterComponent {
   private tvShowService = inject(TvShowService);
+
+  @Input() filterTerm: string = '';
+
   tvShows = [...this.tvShowService.tvShows];
 
-  handleInputChange($event: any) {
-    this.tvShows = this.tvShowService.tvShows
-      .filter(tvShow => tvShow.title.toLowerCase().includes($event.target.value.toLowerCase()));
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['filterTerm']) {
+      this.tvShows = this.tvShowService.tvShows
+        .filter(tvShow => tvShow.title.toLowerCase().includes(this.filterTerm.toLowerCase()));
+    }
   }
 }

@@ -1,4 +1,4 @@
-import {Component, inject} from "@angular/core";
+import {Component, inject, Input, OnChanges, SimpleChanges} from "@angular/core";
 
 import {TvShowService} from "../tv-shows.service";
 import {TvShowCardComponent} from "../shared/tv-show-card.component";
@@ -10,9 +10,9 @@ import {TvShowCardComponent} from "../shared/tv-show-card.component";
     <div class="container">
       <h1>Smooth like butter</h1>
       <div class="grid">
-          @for(tvShow of tvShows; track tvShow.id){
-          <app-tv-show-card [tvShow]="tvShow"/>
-          }
+        @for(tvShow of tvShows; track tvShow.id){
+        <app-tv-show-card [tvShow]="tvShow"/>
+        }
       </div>
     </div>
   `,
@@ -32,12 +32,18 @@ import {TvShowCardComponent} from "../shared/tv-show-card.component";
   `],
   imports: [TvShowCardComponent]
 })
-export class SmoothLikeButterComponent {
+export class SmoothLikeButterComponent implements OnChanges {
+
   private tvShowService = inject(TvShowService);
+
+  @Input() filterTerm: string = '';
+
   tvShows = [...this.tvShowService.tvShows];
 
-  handleInputChange($event: any) {
-    this.tvShows = this.tvShowService.tvShows
-      .filter(tvShow => tvShow.title.toLowerCase().includes($event.target.value.toLowerCase()));
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['filterTerm']) {
+      this.tvShows = this.tvShowService.tvShows
+        .filter(tvShow => tvShow.title.toLowerCase().includes(this.filterTerm.toLowerCase()));
+    }
   }
 }

@@ -1,10 +1,10 @@
 <app-header/>
 <div class="container">
 
-  <input type="text"/>
+  <input type="text" (input)="handleInputChange($event)"/>
 
   <div class="main-grid">
-    <app-classic-filter/>
-    <app-smooth-like-butter/>
+    <app-classic-filter [filterTerm]="filterTerm"/>
+    <app-smooth-like-butter [filterTerm]="filterTerm"/>
   </div>
 </div>

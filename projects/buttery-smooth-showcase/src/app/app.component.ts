@@ -15,4 +15,9 @@ import {SmoothLikeButterComponent} from "./features/smooth-like-butter.component
 })
 export class AppComponent {
   title = 'buttery-smooth-showcase';
+  filterTerm = '';
+
+  handleInputChange($event: any){
+    this.filterTerm = $event.target.value;
+  }
 }
