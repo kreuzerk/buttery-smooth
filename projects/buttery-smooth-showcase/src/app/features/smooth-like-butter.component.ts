@@ -5,10 +5,10 @@ import {TvShowCardComponent} from "../shared/tv-show-card.component";
 
 @Component({
   standalone: true,
-  selector: 'app-classic-filter',
+  selector: 'app-smooth-like-butter',
   template: `
     <div class="container">
-      <h1>Classic filter</h1>
+      <h1>Smooth like butter</h1>
       <div class="grid">
           @for(tvShow of tvShows; track tvShow.id){
           <app-tv-show-card [tvShow]="tvShow"/>
@@ -32,7 +32,7 @@ import {TvShowCardComponent} from "../shared/tv-show-card.component";
   `],
   imports: [TvShowCardComponent]
 })
-export class AppClassicFilterComponent {
+export class SmoothLikeButterComponent {
   private tvShowService = inject(TvShowService);
   tvShows = [...this.tvShowService.tvShows];
 
