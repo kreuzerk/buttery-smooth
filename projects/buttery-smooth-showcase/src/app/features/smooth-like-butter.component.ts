@@ -2,21 +2,27 @@ import {Component, inject, Input, OnChanges, SimpleChanges} from "@angular/core"
 
 import {TvShowService} from "../tv-shows.service";
 import {TvShowCardComponent} from "../shared/tv-show-card.component";
+import {ButterySmooth} from "../../../../buttery-smooth/src/public-api";
 
 @Component({
   standalone: true,
   selector: 'app-smooth-like-butter',
   template: `
-    <div class="container">
-      <h1>Smooth like butter</h1>
-      <div class="grid">
-        @for(tvShow of tvShows; track tvShow.id){
-        <app-tv-show-card [tvShow]="tvShow"/>
-        }
+      <div class="container">
+          <h1>Smooth like butter</h1>
+          <div class="temp-grid">
+              <app-tv-show-card style="view-transition-name: item-{{i}}"
+                                [tvShow]="tvShow" *butterySmooth="let tvShow of tvShows; let i = index"/>
+          </div>
       </div>
-    </div>
   `,
   styles: [`
+    .temp-grid {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+    }
+
     .container {
       background: #212434;
       border-radius: 20px;
@@ -30,7 +36,7 @@ import {TvShowCardComponent} from "../shared/tv-show-card.component";
       grid-gap: 20px;
     }
   `],
-  imports: [TvShowCardComponent]
+  imports: [TvShowCardComponent, ButterySmooth]
 })
 export class SmoothLikeButterComponent implements OnChanges {
 

@@ -2,5 +2,8 @@
  * Public API Surface of buttery-smooth
  */
 
-export * from './lib/buttery-smooth.service';
-export * from './lib/buttery-smooth.component';
+import {ButterySmoothDirective} from "./lib/buttery-smooth.directive";
+import {ButterName} from "./lib/butter-name.directive";
+
+export const ButterySmooth = [ButterySmoothDirective, ButterName]
+

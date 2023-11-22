@@ -16,3 +16,20 @@ input {
   padding-left: 20px;
   color: white;
 }
+
+@keyframes moveleft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@for $i from 1 through 9 {
+  ::view-transition-new(item-#{$i}),
+  ::view-transition-old(item-#{$i})
+  {
+    animation-duration: 1s;
+  }
+}
